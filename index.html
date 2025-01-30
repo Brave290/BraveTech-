@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BraveGlobalTech</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo">Brave<span style="color: orange;">Global</span><span style="color: blue;">Tech</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Our Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="#admin" id="adminBtn">Admin</a>
+        <button id="darkModeToggle" class="dark-mode-btn">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to BraveGlobalTech</h1>
+      <p>Your trusted partner in innovative tech solutions.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>We are a top-tier graphics design company focused on delivering high-quality web solutions and digital designs.</p>
+    <div class="team">
+      <div class="team-member">
+        <img src="team1.jpg" alt="Team Member 1">
+        <p>John Doe - CEO</p>
+      </div>
+      <div class="team-member">
+        <img src="team2.jpg" alt="Team Member 2">
+        <p>Jane Smith - Lead Designer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <p>We specialize in web design, UI/UX, branding, and custom graphics for businesses.</p>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-item">
+      <img src="portfolio1.jpg" alt="Portfolio 1">
+      <p>Website Redesign</p>
+    </div>
+    <div class="portfolio-item">
+      <img src="portfolio2.jpg" alt="Portfolio 2">
+      <p>Brand Identity</p>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <h2>Our Blog</h2>
+    <div class="blog-posts" id="blogPosts">
+      <!-- Blog posts will be inserted here via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="contactStatus"></p>
+  </section>
+
+  <!-- Admin Panel (Hidden by Default) -->
+  <div id="adminPanel" class="admin-panel" style="display: none;">
+    <h2>Admin Panel</h2>
+    <button id="addNewPostBtn">➕ Add New Post</button>
+    <div id="addPostForm" style="display: none;">
+      <form id="newPostForm">
+        <input type="text" id="postTitle" placeholder="Post Title" required>
+        <input type="text" id="postAuthor" placeholder="Author" required>
+        <textarea id="postContent" placeholder="Content" required></textarea>
+        <input type="file" id="postImage">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+<style>
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Navbar Styles */
+.navbar {
+  background: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  width: 80%;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dark-mode-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Hero Section */
+.hero {
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  height: 400px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  padding: 20px;
+}
+
+/* About Section */
+.about {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+}
+
+.about .team {
+  display: flex;
+  gap: 20px;
+}
+
+.about .team-member {
+  text-align: center;
+}
+
+/* Services Section */
+.services {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+/* Portfolio Section */
+.portfolio {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+}
+
+.portfolio-item {
+  margin-bottom: 20px;
+}
+
+/* Blog Section */
+.blog {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+/* Contact Section */
+.contact {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+}
+
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.contact form button {
+  background-color: #007bff;
+}
+
+#contactStatus {
+  margin-top: 20px;
+  color: green;
+}
+
+/* Admin Panel */
+.admin-panel {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+}
+
+#addPostForm {
+  display: none;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .hero {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .hero h1,
+body.dark-mode .hero p {
+  color: white;
+}
+
+body.dark-mode .footer {
+  background-color: #333333;
+}
+
+body.dark-mode .contact form button {
+  background-color: #555;
+}</style>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 All rights reserved BraveGlobalTech</p>
+  </footer>
+
+  <script>
+  // Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+darkModeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+});
+
+if (localStorage.getItem('darkMode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+}
+
+// Contact Form Validation and Submission
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  if (name === '' || email === '' || message === '') {
+    alert('All fields are required.');
+    return;
+  }
+
+  document.getElementById('contactStatus').innerText = 'Thank you for contacting us, we will respond shortly!';
+  document.getElementById('contactForm').reset();
+});
+
+// Admin Post Form Submission
+document.getElementById('newPostForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const title = document.getElementById('postTitle').value;
+  const author = document.getElementById('postAuthor').value;
+  const content = document.getElementById('postContent').value;
+  const image = document.getElementById('postImage').files[0];
+
+  if (!title || !author || !content || !image) {
+    alert('All fields are required.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onloadend = function() {
+    const post = {
+      title,
+      author,
+      content,
+      image: reader.result,
+    };
+
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.push(post);
+    localStorage.setItem('posts', JSON.stringify(posts));
+
+    alert('Post added successfully!');
+    displayPosts();
+    document.getElementById('addPostForm').style.display = 'none';
+  };
+  reader.readAsDataURL(image);
+});
+
+// Display Posts in Blog Section
+function displayPosts() {
+  const blogPosts = document.getElementById('blogPosts');
+  const posts = JSON.parse(localStorage.getItem('posts')) || [];
+  blogPosts.innerHTML = posts.map(post => `
+    <div class="post">
+      <h3>${post.title}</h3>
+      <p>${post.author}</p>
+      <p>${post.content}</p>
+      <img src="${post.image}" alt="${post.title}" />
+    </div>
+    </script>
+</body>
+</html>
